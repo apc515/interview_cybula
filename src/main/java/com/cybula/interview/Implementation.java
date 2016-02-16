@@ -13,6 +13,16 @@ import java.util.Collections;
 /**
  *
  * @author Alex Fargus <alex.fargus@cybula.com>
+ * 
+ * Please note: I had some trouble setting up this as a project, my java experience concists
+ * of solo development projects, therefore I never had to set up a existing project into Eclips
+ * or any other form of compiler or development enviroment.
+ * 
+ * I have kept the same format as far as files are concerned, so There might be some problem with
+ * making the project run. I have ensured, however, that the code would run and that it is
+ * sybtatically correct. Although it might not work I hope that it will show my ability to write
+ * code in java as well as using Git. I don't believe that setting up a project would be a problem
+ * once I am working within the office enviroment, I just have no experience on this particular area
  */
 public class Implementation implements Challenge {
 
