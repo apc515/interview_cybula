@@ -37,8 +37,6 @@ public class Implementation implements Challenge {
 			br.close()
 			//sort the list using java's built in sorting alg
 			Collections.sort(temp);
-			//then returns the sorted list
-			return temp;
 		} catch (NumberFormatException e){
 			//if the line on the file does not contain a number
 			//the list is set to an empty list:
@@ -52,11 +50,19 @@ public class Implementation implements Challenge {
 			//throws the io exception that has been raised
 			throw e;	
 		}
+		//then returns the list, whichever it may be
+		return temp;
 	}
 	
 	private boolean addToList(String line){
-		int i = Integer.parseInt(line);
-		return (i % 2 != 0)
+		//first check if the line is a comment
+		if (line.charAt(0)=='#'){
+			return false;
+		}
+		//if not a comment, check if it is odd
+		int i = Integer.parseInt(line);		//NOTE: if the line is not a number, a exeption is thrown which is handled elsewhere 
+																							//(within the getNumbers function)
+		return (i % 2 != 0);
 	}
 	
 }
