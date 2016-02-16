@@ -7,7 +7,8 @@ package com.cybula.interview;
 
 import java.util.List;
 import java.io.*;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.Collection;
  */
 public class Implementation implements Challenge {
 
-	public list<Integer> getNumbers(File file){
+	public List<Integer> getNumbers(File file) throws IOException{
 		//make the temporary list to be returned
 		List<Integer> temp = new ArrayList<Integer>();
 		//temporary variable used to read from the file
@@ -24,9 +25,9 @@ public class Implementation implements Challenge {
 			//creates the file reader
 			FileReader fr = new FileReader(file);
 			//creates the buffer reader to wrap the file reader
-			BufferReader br = new BufferReader(fr);
+			BufferedReader br = new BufferedReader(fr);
 			//start reading all the lines in the file
-			while ((line = bf.readline()) != null){	
+			while ((line = br.readLine()) != null){	
 				//checks if the next number is odd and adds to the list if it is
 				if (addToList(line)){
 					temp.add(Integer.parseInt(line));
@@ -34,21 +35,14 @@ public class Implementation implements Challenge {
 			}
 			//after reading all items and adding the odd numbers to the list:
 			//closes the file as it is no longer needed
-			br.close()
+			br.close();
 			//sort the list using java's built in sorting alg
 			Collections.sort(temp);
-		} catch (NumberFormatException e){
-			//if the line on the file does not contain a number
-			//the list is set to an empty list:
-			temp = Collections.EMPTY_LIST;
-			//and a IO exception is thrown
-			throw new IOException("The contant of the file is not valid, only accept numbers within the file");
-		} catch (IOException e){
-			//if the file cant be opened:
+		
+		} catch (Exception e){
+			//if the file can't be opened or data is not valid:
 			//empties the list to be returned
-			temp = Collections.EMPTY_LIST;
-			//throws the io exception that has been raised
-			throw e;	
+			temp = Collections.EMPTY_LIST;	
 		}
 		//then returns the list, whichever it may be
 		return temp;
