@@ -42,7 +42,7 @@ public class ChallengeTest {
     @Test
     public void getNumbers_WithCommmentLines_IgnoresAllComments() throws Exception {
         //checks if the function will correctly ignore commented lines
-    	final File numberFile = new File("numbers_commented");
+    	final File numberFile = new File(Resources.getResource("numbers_commented").getFile());
     	final Challenge challenge = new Implementation();
     	
     	final List<Integer> numbers = challenge.getNumbers(numberFile);
@@ -50,13 +50,25 @@ public class ChallengeTest {
     }
     
     @Test
-    public void getNumbers_WithNonNumbers_ThrowException() throws Exception {
+    public void getNumbers_WithNonNumbers_ReturnsEmptyList() throws Exception {
     	//tests if an exception is thrown if the data within the file is not valid i.e. characters instead of numbers
-    	final File numberFile = new File("numbers_char");
+    	final File numberFile = new File(Resources.getResource("numbers_char").getFile());
     	final Challenge challenge = new Implementation();
     	
     	final List<Integer> numbers = challenge.getNumbers(numberFile);
     	Assert.assertEquals(numbers, Collections.EMPTY_LIST);
     	
     }
+    
+    @Test
+    public void getNumbers_WithEmptyFile_ReturnsEmptyList() throws Exception {
+    	//tests if an exception is thrown if the data within the file is not valid i.e. characters instead of numbers
+    	final File numberFile = new File(Resources.getResource("numbers_empty").getFile());
+    	final Challenge challenge = new Implementation();
+    	
+    	final List<Integer> numbers = challenge.getNumbers(numberFile);
+    	Assert.assertEquals(numbers, Collections.EMPTY_LIST);
+    	
+    }
+    
 }
